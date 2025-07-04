@@ -100,6 +100,7 @@ def index():
 <head>
     <meta charset="UTF-8">
     <title>GabeeshSocial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -128,8 +129,8 @@ def index():
 </head>
 <body class="gradient-bg min-h-screen flex items-center justify-center">
     <div class="container mx-auto px-4 py-12">
-        <div class="max-w-md mx-auto glass p-10">
-            <h1 class="text-4xl font-extrabold text-center mb-6 text-contrast drop-shadow-lg">GabeeshSocial</h1>
+        <div class="max-w-md w-full mx-auto glass p-6 sm:p-10">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-center mb-6 text-contrast drop-shadow-lg">GabeeshSocial</h1>
             <p class="text-center mb-8 text-contrast-secondary">Private community for Gabeesh members only</p>
             <div class="space-y-4">
                 <a href="/login" class="block w-full btn-green text-white text-center py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition transform duration-150">Login</a>
@@ -334,8 +335,8 @@ def dashboard():
     create_member_form = ''
     if user['username'] in ['adrian', 'ish']:
         create_member_form = f'''
-        <div class="glass p-8 mt-8">
-            <h2 class="text-2xl font-bold mb-4 text-contrast">Create New Member</h2>
+        <div class="glass p-6 sm:p-8 mt-8">
+            <h2 class="text-xl sm:text-2xl font-bold mb-4 text-contrast">Create New Member</h2>
             {f'<p class="text-green-400 mb-2">{message}</p>' if message else ''}
             {f'<p class="text-red-400 mb-2">{error}</p>' if error else ''}
             <form method="POST" class="space-y-4">
@@ -357,7 +358,7 @@ def dashboard():
         '''
 
     nav_tabs = f'''
-        <div class="flex space-x-4 mb-8">
+        <div class="flex flex-wrap gap-2 mb-8">
             <a href="/announcements" class="btn-green text-white px-4 py-2 rounded-lg font-semibold shadow hover:scale-105 transition">Announcements</a>
             <a href="/polls" class="btn-green text-white px-4 py-2 rounded-lg font-semibold shadow hover:scale-105 transition">Polls</a>
             <a href="/dictionary" class="btn-green text-white px-4 py-2 rounded-lg font-semibold shadow hover:scale-105 transition">Dictionary</a>
@@ -369,6 +370,7 @@ def dashboard():
 <html>
 <head>
     <title>Dashboard - GabeeshSocial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -396,20 +398,20 @@ def dashboard():
     </style>
 </head>
 <body class="gradient-bg min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-4xl font-extrabold text-contrast drop-shadow-lg">Welcome, {safe_display(user['username'])}</h1>
+    <div class="container mx-auto px-2 sm:px-4 py-8">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-contrast drop-shadow-lg">Welcome, {safe_display(user['username'])}</h1>
             <a href="/logout" class="text-red-400 hover:underline font-semibold">Logout</a>
         </div>
         {nav_tabs}
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="glass p-8">
-                <h2 class="text-2xl font-semibold mb-4 text-contrast">Announcements</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass p-6 sm:p-8">
+                <h2 class="text-xl sm:text-2xl font-semibold mb-4 text-contrast">Announcements</h2>
                 <a href="/announcements" class="btn-green text-white px-4 py-2 rounded-lg inline-block mb-4 font-semibold shadow-lg hover:scale-105 transition">View Announcements</a>
                 <p class="text-sm text-contrast-secondary">Check for updates from Adrian</p>
             </div>
-            <div class="glass p-8">
-                <h2 class="text-2xl font-semibold mb-4 text-contrast">Polls</h2>
+            <div class="glass p-6 sm:p-8">
+                <h2 class="text-xl sm:text-2xl font-semibold mb-4 text-contrast">Polls</h2>
                 <a href="/polls" class="btn-green text-white px-4 py-2 rounded-lg inline-block mb-4 font-semibold shadow-lg hover:scale-105 transition">Vote Now</a>
                 <p class="text-sm text-contrast-secondary">Your vote carries weight: {user['votePower']}</p>
             </div>
@@ -1178,7 +1180,7 @@ def polls_page():
         is_button_disabled = username in p.get("votes", {}) or datetime.fromisoformat(p["expires_at"]) <= now
         polls_html += f'''
         <div class="glass p-6 mb-8">
-            <h2 class="text-xl font-semibold mb-2 text-contrast">{safe_display(p["question"])}</h2>
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4 text-contrast">{safe_display(p["question"])}</h2>
             <p class="text-sm text-gray-400 mb-4">Expires: {p["expires_at"]}</p>
             <form method="POST" class="space-y-3">
                 <input type="hidden" name="poll_id" value="{p["id"]}">
