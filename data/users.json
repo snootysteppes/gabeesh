@@ -1,0 +1,23 @@
+[
+  {
+    "username": "adrian",
+    "password": "adrian123",
+    "role": "Leader",
+    "votePower": 6,
+    "muted": false
+  },
+  {
+    "username": "ish",
+    "password": "ares",
+    "role": "Mod",
+    "votePower": 4,
+    "muted": false
+  },
+  {
+    "username": "member1",
+    "password": "temp1",
+    "role": "Member",
+    "votePower": 1,
+    "muted": false
+  }
+]
